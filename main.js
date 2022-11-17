@@ -11,7 +11,8 @@ const gameBoard = (() => {
     }
 
     return {
-        printBoard
+        printBoard,
+        board
     }
 
    
@@ -19,7 +20,24 @@ const gameBoard = (() => {
 })();
 
 const displayController = (() => {
-    const hi = "hello"
+    
+    let currentBoardLength = gameBoard.board.length
+    const boardContainer = document.getElementsByClassName("board_container")
+
+    let drawBoard = function(){
+
+        for(let i = 0; i < currentBoardLength; i++){
+             let square = document.createElement("div")
+            square.classList.add("individual_square")
+             boardContainer[0].appendChild(square)
+            
+         }
+
+    }
+
+    return {
+        drawBoard
+    }
 }
 )()
 
@@ -33,3 +51,4 @@ const Player = (name) => {
 const oni = Player("Oni")
 
 oni.sayName()
+displayController.drawBoard()
