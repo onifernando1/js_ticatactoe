@@ -142,11 +142,42 @@ const game = (() => {
 
         horizontalWins.forEach(combination =>{
 
-            if (gameBoard.board[combination[0]] == gameBoard.board[combination[1]] && gameBoard.board[combination[0]] == gameBoard.board[combination[2]] && gameBoard.board[combination[0]] != "-" ){
+            if (gameBoard.board[combination[0]] == game.currentPlayer.symbol && gameBoard.board[combination[1]] == game.currentPlayer.symbol && gameBoard.board[combination[2]] == game.currentPlayer.symbol){
                 console.log("WIN")
+                win = true 
             }
 
         })
+
+        verticalWins.forEach(combination =>{
+
+            if (gameBoard.board[combination[0]] == game.currentPlayer.symbol && gameBoard.board[combination[1]] == game.currentPlayer.symbol && gameBoard.board[combination[2]] == game.currentPlayer.symbol){
+                console.log("WIN")
+                win = true 
+            }
+
+        })
+
+        diagonalWins.forEach(combination =>{
+
+            if (gameBoard.board[combination[0]] == game.currentPlayer.symbol && gameBoard.board[combination[1]] == game.currentPlayer.symbol && gameBoard.board[combination[2]] == game.currentPlayer.symbol){
+                console.log("WIN")
+                win = true 
+            }
+
+        })
+
+        
+
+
+
+
+
+
+
+
+
+
     }
 
     return {
