@@ -1,14 +1,17 @@
 .board_container{
     display:grid;
-    grid-template-columns: repeat(3,150px);
-    grid-template-rows: repeat(3, 150px);
+    grid-template-columns: repeat(3,130px);
+    grid-template-rows: repeat(3, 130px);
 }
 
 .individual_square {
 
     height:100px;
     width:100px;
-    margin:10px;
     background-color: red;
+    font-size:7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
 }

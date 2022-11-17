@@ -44,14 +44,46 @@ const displayController = (() => {
 }
 )()
 
-const Player = (name) => {
-    const sayName = () => console.log(`My name is ${name} `)
+const Player = (name, symbol) => {
+
+        const squares = document.getElementsByClassName("individual_square")
+        const showPlayerSymbol = (square) => {
+            square.innerHTML = "O"
+        };
+
+        const move = (square) =>{
+            square.innerHTML = "X"
+        }
+
+        const clickToMove = () => {
+
+            for (let i = 0; i < squares.length; i++){
+                
+                squares[i].addEventListener("click", function(){
+                    move(squares[i])
+                })
+            }  
+
+        }
+        
+      
+
+
+   
     return {
-        sayName
+        name, symbol, clickToMove
     }
 }
 
-const oni = Player("Oni")
 
-oni.sayName()
+
+
+// oni.sayName()
 displayController.drawBoard()
+
+
+
+const playerOne = Player("Oni","X")
+const playerTwo = Player("Bob","O")
+
+playerOne.addEvent()
