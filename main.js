@@ -46,34 +46,54 @@ const displayController = (() => {
 
 const Player = (name, symbol) => {
 
-        const squares = document.getElementsByClassName("individual_square")
+        let squares = document.getElementsByClassName("individual_square")
         const showPlayerSymbol = (square) => {
             square.innerHTML = "O"
         };
 
-        const move = (square) =>{
-            square.innerHTML = "X"
-        }
-
-        const clickToMove = () => {
-
-            for (let i = 0; i < squares.length; i++){
-                
-                squares[i].addEventListener("click", function(){
-                    move(squares[i])
-                })
-            }  
-
-        }
+     
         
       
 
 
    
     return {
-        name, symbol, clickToMove
+        name, symbol
     }
 }
+
+const game = (() => {
+    
+    let playerOne = ''
+    let playerTwo = ''
+    let currentPlayer = ''
+    let squares = document.getElementsByClassName("individual_square")
+
+
+    const move = (square) =>{
+        square.innerHTML = game.currentPlayer.symbol
+    }
+
+
+
+    const clickToMove = () => {
+
+        for (let i = 0; i < squares.length; i++){
+            
+            squares[i].addEventListener("click", function(){
+                move(squares[i])
+            })
+        }  
+
+    }
+
+    return {
+        playerOne, playerTwo, clickToMove
+    }
+
+   
+
+})(); 
 
 
 
@@ -85,5 +105,8 @@ displayController.drawBoard()
 
 const playerOne = Player("Oni","X")
 const playerTwo = Player("Bob","O")
+game.playerOne = playerOne
+game.playerTwo = playerTwo
+game.currentPlayer = playerOne
 
-playerOne.addEvent()
+game.clickToMove()
