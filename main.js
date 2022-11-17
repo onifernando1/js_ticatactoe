@@ -29,11 +29,14 @@ const displayController = (() => {
         for(let i = 0; i < currentBoardLength; i++){
              let square = document.createElement("div")
             square.classList.add("individual_square")
+            square.innerHTML = gameBoard.board[i]
              boardContainer[0].appendChild(square)
             
          }
 
     }
+
+
 
     return {
         drawBoard
