@@ -79,7 +79,12 @@ const game = (() => {
 
             square.innerHTML = game.currentPlayer.symbol
             checkWin()
-            swapPlayer()
+            if (win == false ){
+                swapPlayer()
+            } else {
+                console.log("YOU HAVE WON")
+            }
+
 
         
     }
@@ -145,6 +150,7 @@ const game = (() => {
             if (gameBoard.board[combination[0]] == game.currentPlayer.symbol && gameBoard.board[combination[1]] == game.currentPlayer.symbol && gameBoard.board[combination[2]] == game.currentPlayer.symbol){
                 console.log("WIN")
                 win = true 
+                congratulateWinner(game.currentPlayer)
             }
 
         })
@@ -154,6 +160,7 @@ const game = (() => {
             if (gameBoard.board[combination[0]] == game.currentPlayer.symbol && gameBoard.board[combination[1]] == game.currentPlayer.symbol && gameBoard.board[combination[2]] == game.currentPlayer.symbol){
                 console.log("WIN")
                 win = true 
+
             }
 
         })
@@ -163,21 +170,15 @@ const game = (() => {
             if (gameBoard.board[combination[0]] == game.currentPlayer.symbol && gameBoard.board[combination[1]] == game.currentPlayer.symbol && gameBoard.board[combination[2]] == game.currentPlayer.symbol){
                 console.log("WIN")
                 win = true 
+
             }
 
         })
 
-        
+    }
 
-
-
-
-
-
-
-
-
-
+    congratulateWinner = function (winner){
+        console.log(`You won ${winner.name}`)
     }
 
     return {
@@ -202,7 +203,8 @@ game.playerOne = playerOne
 game.playerTwo = playerTwo
 game.currentPlayer = playerOne
 game.clickToMove()
-console.log(game.currentPlayer)
+
+
 
 
 
