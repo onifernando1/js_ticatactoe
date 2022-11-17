@@ -72,11 +72,13 @@ const game = (() => {
     let squares = document.getElementsByClassName("individual_square")
     let legal = ''
     let full = ''
+    let win = false
 
 
     const move = (square) =>{
 
             square.innerHTML = game.currentPlayer.symbol
+            checkWin()
             swapPlayer()
 
         
@@ -126,6 +128,25 @@ const game = (() => {
     const checkFull = function(){
         full = gameBoard.board.includes("-")
 
+        // if (full == true ){
+        //     checkWin()
+        // }
+
+    }
+
+    const checkWin = function(){
+        let horizontalWins =  [[0,1,2],[3,4,5],[6,7,8]]
+        let verticalWins = [[0,3,6],[1,4,7],2,5,8]
+        let diagonalWins = [[0,4,8],[2,4,6]]
+
+
+        horizontalWins.forEach(combination =>{
+
+            if (gameBoard.board[combination[0]] == gameBoard.board[combination[1]] && gameBoard.board[combination[0]] == gameBoard.board[combination[2]] && gameBoard.board[combination[0]] != "-" ){
+                console.log("WIN")
+            }
+
+        })
     }
 
     return {
