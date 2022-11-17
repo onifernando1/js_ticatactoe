@@ -1,9 +1,9 @@
 const gameBoard = (() => {
     
     let board = [
-                ["-"],["-"],["-"],
-                ["-"],["-"],["-"],
-                ["-"],["-"],["-"]
+                "-","-","-",
+                "-","-","-",
+                "-","-","-"
             ]
 
     const printBoard = function(){
@@ -71,6 +71,7 @@ const game = (() => {
     let currentPlayer = ''
     let squares = document.getElementsByClassName("individual_square")
     let legal = ''
+    let full = ''
 
 
     const move = (square) =>{
@@ -88,10 +89,13 @@ const game = (() => {
         for (let i = 0; i < squares.length; i++){
             
             squares[i].addEventListener("click", function(){
+                checkFull()
                 legalMove(squares[i])
                 if (legal == true){
+                    gameBoard.board[i] = game.currentPlayer.symbol
+                    move(squares[i])
+                    
 
-                move(squares[i])
             } 
                 else if (legal == false) {
                     alert("Invalid move")
@@ -112,14 +116,15 @@ const game = (() => {
     }
 
     const legalMove = function(square){
-        if (square.textContent == "-"){
-            legal = true
-        } else {
+        if (square.textContent != "-"){
             legal = false
+        } else {
+            legal = true
         }
     }
 
-    const checkWin = function(){
+    const checkFull = function(){
+        full = gameBoard.board.includes("-")
 
     }
 
@@ -146,3 +151,6 @@ game.playerTwo = playerTwo
 game.currentPlayer = playerOne
 game.clickToMove()
 console.log(game.currentPlayer)
+
+
+
