@@ -179,6 +179,13 @@ const game = (() => {
 
     congratulateWinner = function (winner){
         console.log(`You won ${winner.name}`)
+        let boardContainer = document.getElementsByClassName("board_container")[0]
+        let container = document.getElementsByClassName("body_container")
+        container[0].removeChild(boardContainer); 
+        
+        let winScreen = document.getElementsByClassName("win_screen")[0]
+        winScreen.textContent = `Well Done! ${winner.name} wins!`
+        
     }
 
     return {
@@ -194,9 +201,6 @@ const game = (() => {
 
 // oni.sayName()
 displayController.drawBoard()
-
-
-
 const playerOne = Player("Oni","X")
 const playerTwo = Player("Bob","O")
 game.playerOne = playerOne
