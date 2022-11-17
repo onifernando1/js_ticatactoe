@@ -72,6 +72,7 @@ const game = (() => {
 
     const move = (square) =>{
         square.innerHTML = game.currentPlayer.symbol
+        swapPlayer()
     }
 
 
@@ -85,6 +86,16 @@ const game = (() => {
             })
         }  
 
+    }
+
+    const swapPlayer = function(){
+
+        if (game.currentPlayer.symbol == game.playerOne.symbol){
+            game.currentPlayer = game.playerTwo
+        } else {
+            game.currentPlayer = game.playerOne
+
+        }
     }
 
     return {
@@ -108,5 +119,5 @@ const playerTwo = Player("Bob","O")
 game.playerOne = playerOne
 game.playerTwo = playerTwo
 game.currentPlayer = playerOne
-
 game.clickToMove()
+console.log(game.currentPlayer)
