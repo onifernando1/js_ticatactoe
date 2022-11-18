@@ -10,7 +10,7 @@
 
 const gameBoard = (() => {
 
-    const resetBoard = [
+    let resetBoard = [
         " "," "," ",
         " "," "," ",
         " "," "," "
@@ -224,6 +224,7 @@ const game = (() => {
     }
 
     const getNamesSetup = function(){
+        
         let name_form = document.getElementsByClassName("names_form")[0]
         name_form.addEventListener("submit", (event)=>{
             event.preventDefault()
@@ -232,12 +233,6 @@ const game = (() => {
             })
     }
 
-
-    const getNames = function(){
-            console.log("GN called")
-            // createPlayers()
-            // playGame()
-    }
 
 
 
@@ -277,7 +272,12 @@ const game = (() => {
         let boardContainer = document.getElementsByClassName("board_container")[0]
         let bodyContainer = document.getElementsByClassName("body_container")[0]
         bodyContainer.removeChild(boardContainer)
-        gameBoard.board = gameBoard.resetBoard
+        gameBoard.board = [
+            " "," "," ",
+            " "," "," ",
+            " "," "," "
+        ]
+        console.log(gameBoard.board)
         console.log(playerTwo)
         playerOne = ''
         playerTwo = ''
@@ -288,7 +288,7 @@ const game = (() => {
 
     return {
         // playerOne, playerTwo, clickToMove,legalMove, getNames
-        playGame, getNames,restartSetUp, getNamesSetup
+        playGame,restartSetUp, getNamesSetup
     }
 
    
