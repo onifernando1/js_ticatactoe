@@ -226,15 +226,12 @@ const game = (() => {
     const getNamesSetup = function(){
         
         let name_form = document.getElementsByClassName("names_form")[0]
-        let getNames = document.getElementsByClassName("get_names")[0]
+
         name_form.addEventListener("submit", (event)=>{
             event.preventDefault()
             createPlayers()
             playGame()            
-            getNames.classList.toggle('show');
-            let resetButton = document.getElementsByClassName("restart")[0]
-            resetButton.classList.toggle("show")
-
+            
             })
     }
 
@@ -259,6 +256,11 @@ const game = (() => {
 
     const playGame = function(){
         if (document.getElementsByClassName("board_container").length == 0){
+            let getNames = document.getElementsByClassName("get_names")[0]
+            getNames.classList.toggle('show');
+            let resetButton = document.getElementsByClassName("restart")[0]
+            resetButton.classList.toggle("show")
+
         console.log("PG CALLED")
         displayController.drawBoard()
         clickToMove()
@@ -275,8 +277,7 @@ const game = (() => {
     const restart = function(){
         console.log("Resrtart")
         let getNames = document.getElementsByClassName("get_names")[0]
-        let resetButton = document.getElementsByClassName("restart")[0]
-        resetButton.classList.toggle("show")
+        
         getNames.classList.toggle('show');
 
         let boardContainer = document.getElementsByClassName("board_container")[0]
@@ -292,6 +293,8 @@ const game = (() => {
         playerOne = ''
         playerTwo = ''
         getNamesSetup()
+        let resetButton = document.getElementsByClassName("restart")[0]
+        resetButton.classList.toggle("show")
     }
 
 

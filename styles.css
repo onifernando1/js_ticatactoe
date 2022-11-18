@@ -1,3 +1,10 @@
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+
 .board_container{
     display:grid;
     grid-template-columns: repeat(3,120px);
@@ -30,7 +37,7 @@
     flex-direction: column-reverse;
     justify-content: center;
     align-items: center;
-    margin-top:200px;
+    /* margin-top:200px; */
     gap:50px;
     background-color: black;
     height:100vh;
@@ -53,6 +60,10 @@
 
 .get_names{
     opacity:0%;
+    color:white;
+    /* background-color: red; */
+    /* margin-top:300px; */
+    position: absolute;
 }
 
 .get_names.show{
@@ -61,7 +72,11 @@
 
 .restart{
     opacity:0%;
-
+    border:none;
+    background-color: white;
+    height:30px;
+    width:100px;
+    border-radius: 10px;
 }
 
 .restart.show{
