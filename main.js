@@ -1,4 +1,4 @@
-// Clean up the interface to allow players to put in their names, 
+// // Clean up the interface to allow players to put in their names, 
 // include a button to start/restart the game
 //organize code 
 
@@ -9,6 +9,12 @@
 
 
 const gameBoard = (() => {
+
+    const resetBoard = [
+        "-","-","-",
+        "-","-","-",
+        "-","-","-"
+    ]
     
     let board = [
                 "-","-","-",
@@ -24,7 +30,8 @@ const gameBoard = (() => {
 
     return {
         printBoard,
-        board
+        board,
+        resetBoard
     }
 
    
@@ -32,17 +39,24 @@ const gameBoard = (() => {
 })();
 
 const displayController = (() => {
+
     
-    let currentBoardLength = gameBoard.board.length
-    const boardContainer = document.getElementsByClassName("board_container")
+    
 
     let drawBoard = function(){
+
+        let currentBoardLength = gameBoard.board.length
+        let bodyContainer = document.getElementsByClassName("body_container")[0]
+        // let boardContainer = document.getElementsByClassName("board_container")
+        let boardContainer = document.createElement("div")
+        boardContainer.classList.add("board_container")
+        bodyContainer.appendChild(boardContainer)
 
         for(let i = 0; i < currentBoardLength; i++){
              let square = document.createElement("div")
             square.classList.add("individual_square")
             square.innerHTML = gameBoard.board[i]
-             boardContainer[0].appendChild(square)
+             boardContainer.appendChild(square)
             
          }
 
@@ -101,16 +115,6 @@ const game = (() => {
         for (let i = 0; i < squares.length; i++){
             
             squares[i].addEventListener("click", function(){
-            //     legalMove(squares[i])
-            //     if (legal == true){
-            //         gameBoard.board[i] = game.currentPlayer.symbol
-            //         move(squares[i])
-                    
-
-            // } 
-            //     else if (legal == false) {
-            //         alert("Invalid move")
-            //     }
             round(i)
 
             })
@@ -242,8 +246,33 @@ const game = (() => {
 
     }
 
+    const playGame = function(){
+        displayController.drawBoard()
+        getNames()
+        clickToMove()
+        restart()
+    }
+
+    const restart = function(){
+        restartButton = document.getElementsByClassName("restart")[0]
+        restartButton.addEventListener("click", function(){
+            console.log("Resrtart")
+            let boardContainer = document.getElementsByClassName("board_container")[0]
+            let bodyContainer = document.getElementsByClassName("body_container")[0]
+            bodyContainer.removeChild(boardContainer)
+            gameBoard.board = gameBoard.resetBoard
+            console.log(displayController.board)
+
+            playGame()
+            
+        })
+    }
+
+
+
     return {
-        playerOne, playerTwo, clickToMove,legalMove, getNames
+        // playerOne, playerTwo, clickToMove,legalMove, getNames
+        playGame
     }
 
    
@@ -254,14 +283,12 @@ const game = (() => {
 
 
 // oni.sayName()
-displayController.drawBoard()
 // const playerOne = Player("Oni","X")
 // const playerTwo = Player("Bob","O")
 // game.playerOne = playerOne
 // game.playerTwo = playerTwo
 // game.currentPlayer = playerOne
-game.getNames()
-game.clickToMove()
+game.playGame()
 
 
 
