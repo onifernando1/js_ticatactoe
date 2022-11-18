@@ -289,7 +289,8 @@ const game = (() => {
 // game.playerOne = playerOne
 // game.playerTwo = playerTwo
 // game.currentPlayer = playerOne
-game.getNames()
+// game.getNames() // put in 
+game.playGame() // take out 
 
 
 
