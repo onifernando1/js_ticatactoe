@@ -16,8 +16,32 @@
 
 }
 
-.win_screen{
-    height:100px;
-    width:100px;
+.win_screen {
+    height:1300px;
+    width:2000px;
+    /* background-color: red;  */
+    /* position:fixed; */
+    /* transform: translateY(-1%); */
+    /* margin-top:-600px; */
+}
+
+.body_container{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:200px;
+}
+
+.win_screen.show{
+    transform: translateY(-25%);
+    /* height:100vh;
+    width:100vw; */
     background-color: red;
+    /* margin-top:-600px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size:5em;
+    font-weight: 800;
+
 }

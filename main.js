@@ -1,7 +1,5 @@
-// draw function 
 // Clean up the interface to allow players to put in their names, 
 // include a button to start/restart the game
-//  and add a display element that congratulates the winning player!
 //organize code 
 
 //style everything 
@@ -65,12 +63,6 @@ const Player = (name, symbol) => {
             square.innerHTML = "O"
         };
 
-     
-        
-      
-
-
-   
     return {
         name, symbol
     }
@@ -89,7 +81,7 @@ const game = (() => {
 
     const move = (square) =>{
 
-            square.innerHTML = game.currentPlayer.symbol
+            square.innerHTML = currentPlayer.symbol
             checkWin()
             if (win == false ){
                 checkFull()
@@ -100,11 +92,8 @@ const game = (() => {
             } else {
                 console.log("YOU HAVE WON")
             }
-
-
         
     }
-
 
 
     const clickToMove = () => {
@@ -112,21 +101,18 @@ const game = (() => {
         for (let i = 0; i < squares.length; i++){
             
             squares[i].addEventListener("click", function(){
-                // checkFull()
-                // if (full==true){
-                    // alert("Draw")
-                // } else {
-                legalMove(squares[i])
-                if (legal == true){
-                    gameBoard.board[i] = game.currentPlayer.symbol
-                    move(squares[i])
+            //     legalMove(squares[i])
+            //     if (legal == true){
+            //         gameBoard.board[i] = game.currentPlayer.symbol
+            //         move(squares[i])
                     
 
-            } 
-                else if (legal == false) {
-                    alert("Invalid move")
-                }
-            // }
+            // } 
+            //     else if (legal == false) {
+            //         alert("Invalid move")
+            //     }
+            round(i)
+
             })
         }  
 
@@ -134,10 +120,10 @@ const game = (() => {
 
     const swapPlayer = function(){
 
-        if (game.currentPlayer.symbol == game.playerOne.symbol){
-            game.currentPlayer = game.playerTwo
+        if (currentPlayer.symbol == playerOne.symbol){
+            currentPlayer = playerTwo
         } else {
-            game.currentPlayer = game.playerOne
+            currentPlayer = playerOne
 
         }
     }
@@ -156,10 +142,6 @@ const game = (() => {
         } else {
             full = true 
         }
-
-        // if (full == true ){
-        //     checkWin()
-        // }
 
     }
 
@@ -181,17 +163,17 @@ const game = (() => {
 
         horizontalWins.forEach(combination =>{
 
-            if (gameBoard.board[combination[0]] == game.currentPlayer.symbol && gameBoard.board[combination[1]] == game.currentPlayer.symbol && gameBoard.board[combination[2]] == game.currentPlayer.symbol){
+            if (gameBoard.board[combination[0]] == currentPlayer.symbol && gameBoard.board[combination[1]] == currentPlayer.symbol && gameBoard.board[combination[2]] == currentPlayer.symbol){
                 console.log("WIN")
                 win = true 
-                congratulateWinner(game.currentPlayer)
+                congratulateWinner(currentPlayer)
             }
 
         })
 
         verticalWins.forEach(combination =>{
 
-            if (gameBoard.board[combination[0]] == game.currentPlayer.symbol && gameBoard.board[combination[1]] == game.currentPlayer.symbol && gameBoard.board[combination[2]] == game.currentPlayer.symbol){
+            if (gameBoard.board[combination[0]] == currentPlayer.symbol && gameBoard.board[combination[1]] == currentPlayer.symbol && gameBoard.board[combination[2]] == currentPlayer.symbol){
                 console.log("WIN")
                 win = true 
 
@@ -201,7 +183,7 @@ const game = (() => {
 
         diagonalWins.forEach(combination =>{
 
-            if (gameBoard.board[combination[0]] == game.currentPlayer.symbol && gameBoard.board[combination[1]] == game.currentPlayer.symbol && gameBoard.board[combination[2]] == game.currentPlayer.symbol){
+            if (gameBoard.board[combination[0]] == currentPlayer.symbol && gameBoard.board[combination[1]] == currentPlayer.symbol && gameBoard.board[combination[2]] == currentPlayer.symbol){
                 console.log("WIN")
                 win = true 
 
@@ -211,19 +193,57 @@ const game = (() => {
 
     }
 
-    congratulateWinner = function (winner){
+    const congratulateWinner = function (winner){
         console.log(`You won ${winner.name}`)
         let boardContainer = document.getElementsByClassName("board_container")[0]
         let container = document.getElementsByClassName("body_container")
         container[0].removeChild(boardContainer); 
         
         let winScreen = document.getElementsByClassName("win_screen")[0]
+        winScreen.classList.toggle('show');
+
         winScreen.textContent = `Well Done! ${winner.name} wins!`
         
     }
 
+    const round = function(i){
+        legalMove(squares[i])
+        if (legal == true){
+            gameBoard.board[i] = currentPlayer.symbol
+            move(squares[i])
+            
+
+    } 
+        else if (legal == false) {
+            alert("Invalid move")
+        }
+    }
+
+    const getNames = function(){
+        let name_form = document.getElementsByClassName("names_form")[0]
+        name_form.addEventListener("submit", (event)=>{
+            event.preventDefault()
+            createPlayers()
+            })
+    }
+
+    const createPlayers = function(){
+        p1_name = document.getElementById("p1_name")
+        p2_name = document.getElementById("p2_name")
+
+        playerOne = Player(p1_name.value,"X") 
+        playerTwo = Player(p2_name.value,"O") 
+
+        // console.log(playerOne)
+        // console.log(playerTwo)
+
+        currentPlayer = playerOne
+        // console.log(currentPlayer.symbol)
+
+    }
+
     return {
-        playerOne, playerTwo, clickToMove,legalMove
+        playerOne, playerTwo, clickToMove,legalMove, getNames
     }
 
    
@@ -235,11 +255,12 @@ const game = (() => {
 
 // oni.sayName()
 displayController.drawBoard()
-const playerOne = Player("Oni","X")
-const playerTwo = Player("Bob","O")
-game.playerOne = playerOne
-game.playerTwo = playerTwo
-game.currentPlayer = playerOne
+// const playerOne = Player("Oni","X")
+// const playerTwo = Player("Bob","O")
+// game.playerOne = playerOne
+// game.playerTwo = playerTwo
+// game.currentPlayer = playerOne
+game.getNames()
 game.clickToMove()
 
 
