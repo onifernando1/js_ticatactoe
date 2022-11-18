@@ -1,3 +1,15 @@
+// draw function 
+// Clean up the interface to allow players to put in their names, 
+// include a button to start/restart the game
+//  and add a display element that congratulates the winning player!
+//organize code 
+
+//style everything 
+
+//ai
+
+
+
 const gameBoard = (() => {
     
     let board = [
@@ -80,6 +92,10 @@ const game = (() => {
             square.innerHTML = game.currentPlayer.symbol
             checkWin()
             if (win == false ){
+                checkFull()
+                if(full == true){
+                    drawSequence()
+                }
                 swapPlayer()
             } else {
                 console.log("YOU HAVE WON")
@@ -96,7 +112,10 @@ const game = (() => {
         for (let i = 0; i < squares.length; i++){
             
             squares[i].addEventListener("click", function(){
-                checkFull()
+                // checkFull()
+                // if (full==true){
+                    // alert("Draw")
+                // } else {
                 legalMove(squares[i])
                 if (legal == true){
                     gameBoard.board[i] = game.currentPlayer.symbol
@@ -107,6 +126,7 @@ const game = (() => {
                 else if (legal == false) {
                     alert("Invalid move")
                 }
+            // }
             })
         }  
 
@@ -131,11 +151,25 @@ const game = (() => {
     }
 
     const checkFull = function(){
-        full = gameBoard.board.includes("-")
+        if(gameBoard.board.includes("-")){
+            full = false 
+        } else {
+            full = true 
+        }
 
         // if (full == true ){
         //     checkWin()
         // }
+
+    }
+
+    const drawSequence = function(){
+        let boardContainer = document.getElementsByClassName("board_container")[0]
+        let container = document.getElementsByClassName("body_container")
+        container[0].removeChild(boardContainer); 
+        
+        let winScreen = document.getElementsByClassName("win_screen")[0]
+        winScreen.textContent = `It is a draw!`
 
     }
 
