@@ -223,14 +223,24 @@ const game = (() => {
         }
     }
 
-    const getNames = function(){
+    const getNamesSetup = function(){
         let name_form = document.getElementsByClassName("names_form")[0]
         name_form.addEventListener("submit", (event)=>{
             event.preventDefault()
             createPlayers()
-            playGame()
+            playGame()            
             })
     }
+
+
+    const getNames = function(){
+            console.log("GN called")
+            // createPlayers()
+            // playGame()
+    }
+
+
+
 
     const createPlayers = function(){
         p1_name = document.getElementById("p1_name")
@@ -248,32 +258,37 @@ const game = (() => {
     }
 
     const playGame = function(){
+        if (document.getElementsByClassName("board_container").length == 0){
+        console.log("PG CALLED")
         displayController.drawBoard()
-        // getNames()
         clickToMove()
-        restart()
+    }
+    }
+
+    const restartSetUp = function(){
+        restartButton = document.getElementsByClassName("restart")[0]
+        restartButton.addEventListener("click", function(){
+            restart()
+        })
     }
 
     const restart = function(){
-        restartButton = document.getElementsByClassName("restart")[0]
-        restartButton.addEventListener("click", function(){
-            console.log("Resrtart")
-            let boardContainer = document.getElementsByClassName("board_container")[0]
-            let bodyContainer = document.getElementsByClassName("body_container")[0]
-            bodyContainer.removeChild(boardContainer)
-            gameBoard.board = gameBoard.resetBoard
-            console.log(displayController.board)
-
-            playGame()
-            
-        })
+        console.log("Resrtart")
+        let boardContainer = document.getElementsByClassName("board_container")[0]
+        let bodyContainer = document.getElementsByClassName("body_container")[0]
+        bodyContainer.removeChild(boardContainer)
+        gameBoard.board = gameBoard.resetBoard
+        console.log(playerTwo)
+        playerOne = ''
+        playerTwo = ''
+        getNamesSetup()
     }
 
 
 
     return {
         // playerOne, playerTwo, clickToMove,legalMove, getNames
-        playGame, getNames
+        playGame, getNames,restartSetUp, getNamesSetup
     }
 
    
@@ -289,8 +304,9 @@ const game = (() => {
 // game.playerOne = playerOne
 // game.playerTwo = playerTwo
 // game.currentPlayer = playerOne
-// game.getNames() // put in 
-game.playGame() // take out 
+game.restartSetUp()
+game.getNamesSetup() // put in 
+// game.playGame() // take out 
 
 
 
