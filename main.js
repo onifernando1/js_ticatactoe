@@ -228,6 +228,7 @@ const game = (() => {
         name_form.addEventListener("submit", (event)=>{
             event.preventDefault()
             createPlayers()
+            playGame()
             })
     }
 
@@ -248,7 +249,7 @@ const game = (() => {
 
     const playGame = function(){
         displayController.drawBoard()
-        getNames()
+        // getNames()
         clickToMove()
         restart()
     }
@@ -272,7 +273,7 @@ const game = (() => {
 
     return {
         // playerOne, playerTwo, clickToMove,legalMove, getNames
-        playGame
+        playGame, getNames
     }
 
    
@@ -288,7 +289,7 @@ const game = (() => {
 // game.playerOne = playerOne
 // game.playerTwo = playerTwo
 // game.currentPlayer = playerOne
-game.playGame()
+game.getNames()
 
 
 
