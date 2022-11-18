@@ -1,7 +1,7 @@
 .board_container{
     display:grid;
-    grid-template-columns: repeat(3,130px);
-    grid-template-rows: repeat(3, 130px);
+    grid-template-columns: repeat(3,120px);
+    grid-template-rows: repeat(3, 120px);
 }
 
 .individual_square {
@@ -48,5 +48,23 @@
     align-items: center;
     font-size:5em;
     font-weight: 800;
+
+}
+
+.get_names{
+    opacity:0%;
+}
+
+.get_names.show{
+    opacity:100%;
+}
+
+.restart{
+    opacity:0%;
+
+}
+
+.restart.show{
+    opacity:100%;
 
 }
