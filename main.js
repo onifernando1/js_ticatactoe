@@ -11,15 +11,15 @@
 const gameBoard = (() => {
 
     const resetBoard = [
-        "-","-","-",
-        "-","-","-",
-        "-","-","-"
+        " "," "," ",
+        " "," "," ",
+        " "," "," "
     ]
     
     let board = [
-                "-","-","-",
-                "-","-","-",
-                "-","-","-"
+                " "," "," ",
+                " "," "," ",
+                " "," "," "
             ]
 
     const printBoard = function(){
@@ -133,7 +133,7 @@ const game = (() => {
     }
 
     const legalMove = function(square){
-        if (square.textContent != "-"){
+        if (square.textContent != " "){
             legal = false
         } else {
             legal = true
@@ -141,7 +141,7 @@ const game = (() => {
     }
 
     const checkFull = function(){
-        if(gameBoard.board.includes("-")){
+        if(gameBoard.board.includes(" ")){
             full = false 
         } else {
             full = true 
