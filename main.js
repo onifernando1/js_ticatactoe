@@ -198,15 +198,27 @@ const game = (() => {
     }
 
     const congratulateWinner = function (winner){
-        console.log(`You won ${winner.name}`)
+        console.log(`${winner.name} wins!`)
         let boardContainer = document.getElementsByClassName("board_container")[0]
-        let container = document.getElementsByClassName("body_container")
-        container[0].removeChild(boardContainer); 
-        
-        let winScreen = document.getElementsByClassName("win_screen")[0]
-        winScreen.classList.toggle('show');
+        let container = document.getElementsByClassName("body_container")[0]
+        let winMessage = document.createElement("div")
+        winMessage.className = "win_message"
+        winMessage.innerText = `You won ${winner.name}`
+        container.appendChild(winMessage)
+        container.removeChild(boardContainer); 
 
-        winScreen.textContent = `Well Done! ${winner.name} wins!`
+
+        // let resetButton = document.getElementsByClassName("restart")[0]
+        // resetButton.classList.toggle("show") 
+    
+
+        
+        // let winScreen = document.getElementsByClassName("win_screen")[0]
+        // winScreen.classList.toggle('show');
+
+        // winScreen.textContent = `Well Done! ${winner.name} wins!`
+        // winScreen.appendChild(newResetButton)
+
         
     }
 
@@ -282,19 +294,25 @@ const game = (() => {
 
         let boardContainer = document.getElementsByClassName("board_container")[0]
         let bodyContainer = document.getElementsByClassName("body_container")[0]
-        bodyContainer.removeChild(boardContainer)
+        if(boardContainer != undefined){
+            bodyContainer.removeChild(boardContainer)
+        }
         gameBoard.board = [
             " "," "," ",
             " "," "," ",
             " "," "," "
         ]
-        console.log(gameBoard.board)
-        console.log(playerTwo)
         playerOne = ''
         playerTwo = ''
+        winMessage = document.getElementsByClassName("win_message")[0]
+        
+        if(winMessage != undefined){
+            bodyContainer.removeChild(winMessage)
+        }
         getNamesSetup()
         let resetButton = document.getElementsByClassName("restart")[0]
         resetButton.classList.toggle("show")
+      
     }
 
 

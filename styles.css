@@ -44,12 +44,20 @@ body{
     width:100vw;
 }
 
+/* .win_screen_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
 .win_screen.show{
-    transform: translateY(-25%);
-    /* height:100vh;
-    width:100vw; */
+    /* transform: translateY(-25%); */
+    /* height:100vh; */
+    /* width:100vw;  */
+    /* background-color: red; */
+    color:white;
     background-color: red;
-    /* margin-top:-600px; */
+    margin-top:-2210px; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,12 +84,23 @@ body{
     background-color: white;
     height:30px;
     width:100px;
+    margin-top:200px;
     border-radius: 10px;
 }
 
 .restart.show{
     opacity:100%;
 
+}
+
+.restart:hover{
+    background-color: red; //to delete 
+}
+
+.restart.new{
+    background-color: blue;
+    z-index: -1;
+    position:relative;
 }
 
 input[type="submit"] {
@@ -102,4 +121,9 @@ input[type="submit"]:hover {
     justify-content: center;
     align-items: center;
     
+}
+
+
+.win_message{
+    color:white;
 }
