@@ -6,15 +6,12 @@
 
 //ai
 
+//draw
+
 
 
 const gameBoard = (() => {
 
-    let resetBoard = [
-        " "," "," ",
-        " "," "," ",
-        " "," "," "
-    ]
     
     let board = [
                 " "," "," ",
@@ -30,8 +27,7 @@ const gameBoard = (() => {
 
     return {
         printBoard,
-        board,
-        resetBoard
+        board
     }
 
    
@@ -47,7 +43,6 @@ const displayController = (() => {
 
         let currentBoardLength = gameBoard.board.length
         let bodyContainer = document.getElementsByClassName("body_container")[0]
-        // let boardContainer = document.getElementsByClassName("board_container")
         let boardContainer = document.createElement("div")
         boardContainer.classList.add("board_container")
         bodyContainer.appendChild(boardContainer)
@@ -72,10 +67,7 @@ const displayController = (() => {
 
 const Player = (name, symbol) => {
 
-        let squares = document.getElementsByClassName("individual_square")
-        const showPlayerSymbol = (square) => {
-            square.innerHTML = "O"
-        };
+
 
     return {
         name, symbol
@@ -103,9 +95,7 @@ const game = (() => {
                     drawSequence()
                 }
                 swapPlayer()
-            } else {
-                console.log("YOU HAVE WON")
-            }
+            } 
         
     }
 
@@ -153,9 +143,9 @@ const game = (() => {
         let boardContainer = document.getElementsByClassName("board_container")[0]
         let container = document.getElementsByClassName("body_container")
         container[0].removeChild(boardContainer); 
-        
-        let winScreen = document.getElementsByClassName("win_screen")[0]
-        winScreen.textContent = `It is a draw!`
+        let winMessage = document.createElement("div")
+        winMessage.className = "win_message"
+        winMessage.innerText = `It is a draw!`
 
     }
 
@@ -171,6 +161,10 @@ const game = (() => {
                 console.log("WIN")
                 win = true 
                 congratulateWinner(currentPlayer)
+                console.log("hwincheck")
+                console.log(currentPlayer.symbol)
+                console.log(combination)
+                console.log(gameBoard.board)
             }
 
         })
@@ -180,6 +174,10 @@ const game = (() => {
             if (gameBoard.board[combination[0]] == currentPlayer.symbol && gameBoard.board[combination[1]] == currentPlayer.symbol && gameBoard.board[combination[2]] == currentPlayer.symbol){
                 console.log("WIN")
                 win = true 
+                congratulateWinner(currentPlayer)
+                console.log(currentPlayer.symbol)
+                console.log(combination)
+                console.log(gameBoard.board)
 
             }
 
@@ -190,6 +188,12 @@ const game = (() => {
             if (gameBoard.board[combination[0]] == currentPlayer.symbol && gameBoard.board[combination[1]] == currentPlayer.symbol && gameBoard.board[combination[2]] == currentPlayer.symbol){
                 console.log("WIN")
                 win = true 
+                congratulateWinner(currentPlayer)
+                console.log(currentPlayer.symbol)
+                console.log(combination)
+                console.log(gameBoard.board)    
+
+
 
             }
 
@@ -206,19 +210,6 @@ const game = (() => {
         winMessage.innerText = `You won ${winner.name}`
         container.appendChild(winMessage)
         container.removeChild(boardContainer); 
-
-
-        // let resetButton = document.getElementsByClassName("restart")[0]
-        // resetButton.classList.toggle("show") 
-    
-
-        
-        // let winScreen = document.getElementsByClassName("win_screen")[0]
-        // winScreen.classList.toggle('show');
-
-        // winScreen.textContent = `Well Done! ${winner.name} wins!`
-        // winScreen.appendChild(newResetButton)
-
         
     }
 
@@ -238,16 +229,23 @@ const game = (() => {
     const getNamesSetup = function(){
         
         let name_form = document.getElementsByClassName("names_form")[0]
+        call = 0 
+
 
         name_form.addEventListener("submit", (event)=>{
             event.preventDefault()
-            createPlayers()
-            playGame()            
+            getNamesFunction()
             
             })
     }
 
 
+    const getNamesFunction = function(){
+        
+        createPlayers()
+        console.log(currentPlayer) // to delete 
+        playGame()
+    }
 
 
 
@@ -257,12 +255,10 @@ const game = (() => {
 
         playerOne = Player(p1_name.value,"X") 
         playerTwo = Player(p2_name.value,"O") 
+        currentPlayer = playerOne // top delete 
 
-        // console.log(playerOne)
-        // console.log(playerTwo)
 
-        currentPlayer = playerOne
-        // console.log(currentPlayer.symbol)
+
 
     }
 
@@ -276,6 +272,8 @@ const game = (() => {
         console.log("PG CALLED")
         displayController.drawBoard()
         clickToMove()
+    } else { 
+        alert("some error")
     }
     }
 
@@ -287,59 +285,68 @@ const game = (() => {
     }
 
     const restart = function(){
-        console.log("Resrtart")
-        let getNames = document.getElementsByClassName("get_names")[0]
-        
-        getNames.classList.toggle('show');
+
+       
+        // Remove Board
+
 
         let boardContainer = document.getElementsByClassName("board_container")[0]
         let bodyContainer = document.getElementsByClassName("body_container")[0]
         if(boardContainer != undefined){
             bodyContainer.removeChild(boardContainer)
         }
+
+        //Reset players
+
+        p1_name = document.getElementById("p1_name")
+        p2_name = document.getElementById("p2_name")
+        p1_name.value = ""
+        p2_name.value = ""
+        playerOne = ''
+        playerTwo = ''
+
+        //Reset board 
+
         gameBoard.board = [
             " "," "," ",
             " "," "," ",
             " "," "," "
         ]
-        playerOne = ''
-        playerTwo = ''
+     
+        //Remove win message
         winMessage = document.getElementsByClassName("win_message")[0]
         
         if(winMessage != undefined){
             bodyContainer.removeChild(winMessage)
         }
-        getNamesSetup()
+
+        //Hide Reset Button
         let resetButton = document.getElementsByClassName("restart")[0]
         resetButton.classList.toggle("show")
-      
+
+        //show get name form 
+        let getNames = document.getElementsByClassName("get_names")[0]
+        getNames.classList.toggle('show');
+
+        //start game 
+        
+
+    }
+
+    const startGame = function(){
+        
     }
 
 
 
     return {
-        // playerOne, playerTwo, clickToMove,legalMove, getNames
-        playGame,restartSetUp, getNamesSetup
+        restartSetUp, getNamesSetup, restart, getNamesFunction
     }
 
    
 
 })(); 
 
-
-
-
-// oni.sayName()
-// const playerOne = Player("Oni","X")
-// const playerTwo = Player("Bob","O")
-// game.playerOne = playerOne
-// game.playerTwo = playerTwo
-// game.currentPlayer = playerOne
 game.restartSetUp()
-game.getNamesSetup() // put in 
-// game.playGame() // take out 
-
-
-
-
-
+game.getNamesSetup() 
+// game.getNamesFunction()
