@@ -140,12 +140,14 @@ const game = (() => {
     }
 
     const drawSequence = function(){
+        // console.log(`${winner.name} wins!`)
         let boardContainer = document.getElementsByClassName("board_container")[0]
-        let container = document.getElementsByClassName("body_container")
-        container[0].removeChild(boardContainer); 
+        let container = document.getElementsByClassName("body_container")[0]
         let winMessage = document.createElement("div")
         winMessage.className = "win_message"
         winMessage.innerText = `It is a draw!`
+        container.appendChild(winMessage)
+        container.removeChild(boardContainer); 
 
     }
 
@@ -304,6 +306,7 @@ const game = (() => {
         p2_name.value = ""
         playerOne = ''
         playerTwo = ''
+        currentPlayer = ''
 
         //Reset board 
 
@@ -313,6 +316,14 @@ const game = (() => {
             " "," "," "
         ]
      
+
+        //reset legal, full, win  
+      
+        legal = ''
+        full = ''
+        win = false
+
+        
         //Remove win message
         winMessage = document.getElementsByClassName("win_message")[0]
         
@@ -328,25 +339,24 @@ const game = (() => {
         let getNames = document.getElementsByClassName("get_names")[0]
         getNames.classList.toggle('show');
 
-        //start game 
         
 
     }
 
     const startGame = function(){
-        
+        restartSetUp()
+        getNamesSetup()
     }
 
 
 
     return {
-        restartSetUp, getNamesSetup, restart, getNamesFunction
+        startGame
     }
 
    
 
 })(); 
 
-game.restartSetUp()
-game.getNamesSetup() 
-// game.getNamesFunction()
+
+game.startGame()

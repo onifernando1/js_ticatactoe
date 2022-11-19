@@ -9,7 +9,7 @@ body{
     display:grid;
     grid-template-columns: repeat(3,120px);
     grid-template-rows: repeat(3, 120px);
-    margin-top:-1000px;
+    /* margin-top:-1000px; */
 }
 
 .individual_square {
@@ -41,7 +41,7 @@ body{
     opacity:0%;
     color:white;
     /* position: ;  */
-    margin-top:-1000px;
+    /* margin-top:-1000px; */
 }
 
 .get_names.show{
@@ -54,7 +54,7 @@ body{
     background-color: white;
     height:30px;
     width:100px;
-    margin-top:200px;
+    /* margin-top:200px; */
     border-radius: 10px;
 }
 
@@ -96,4 +96,5 @@ input[type="submit"]:hover {
 
 .win_message{
     color:white;
+    /* margin-top:-900px; */
 }
