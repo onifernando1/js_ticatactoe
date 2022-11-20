@@ -1,12 +1,6 @@
-// // Clean up the interface to allow players to put in their names, 
-// include a button to start/restart the game
-//organize code 
-
-//style everything 
 
 //ai
 
-//draw
 
 
 
@@ -19,14 +13,8 @@ const gameBoard = (() => {
                 " "," "," "
             ]
 
-    const printBoard = function(){
-        console.log(board)
-    }
-
-
 
     return {
-        printBoard,
         board
     }
 
@@ -140,7 +128,6 @@ const game = (() => {
     }
 
     const drawSequence = function(){
-        // console.log(`${winner.name} wins!`)
         let boardContainer = document.getElementsByClassName("board_container")[0]
         let container = document.getElementsByClassName("body_container")[0]
         let winMessage = document.createElement("div")
@@ -163,10 +150,6 @@ const game = (() => {
                 console.log("WIN")
                 win = true 
                 congratulateWinner(currentPlayer)
-                console.log("hwincheck")
-                console.log(currentPlayer.symbol)
-                console.log(combination)
-                console.log(gameBoard.board)
             }
 
         })
@@ -177,9 +160,6 @@ const game = (() => {
                 console.log("WIN")
                 win = true 
                 congratulateWinner(currentPlayer)
-                console.log(currentPlayer.symbol)
-                console.log(combination)
-                console.log(gameBoard.board)
 
             }
 
@@ -191,11 +171,6 @@ const game = (() => {
                 console.log("WIN")
                 win = true 
                 congratulateWinner(currentPlayer)
-                console.log(currentPlayer.symbol)
-                console.log(combination)
-                console.log(gameBoard.board)    
-
-
 
             }
 
@@ -204,7 +179,6 @@ const game = (() => {
     }
 
     const congratulateWinner = function (winner){
-        console.log(`${winner.name} wins!`)
         let boardContainer = document.getElementsByClassName("board_container")[0]
         let container = document.getElementsByClassName("body_container")[0]
         let winMessage = document.createElement("div")
@@ -231,8 +205,6 @@ const game = (() => {
     const getNamesSetup = function(){
         
         let name_form = document.getElementsByClassName("names_form")[0]
-        call = 0 
-
 
         name_form.addEventListener("submit", (event)=>{
             event.preventDefault()
@@ -245,7 +217,6 @@ const game = (() => {
     const getNamesFunction = function(){
         
         createPlayers()
-        console.log(currentPlayer) // to delete 
         playGame()
     }
 
@@ -254,17 +225,18 @@ const game = (() => {
     const createPlayers = function(){
         p1_name = document.getElementById("p1_name")
         p2_name = document.getElementById("p2_name")
-        console.log(p1_name.value)
+         
         if(p1_name.value != undefined && p1_name.value != ""){
-        playerOne = Player(p1_name.value,"X") 
+            playerOne = Player(p1_name.value,"X") 
         } else {
             playerOne = Player("Player One","X")
         }
         if(p2_name.value != undefined && p2_name.value != ""){
-        playerTwo = Player(p2_name.value,"O") 
+            playerTwo = Player(p2_name.value,"O") 
         } else {
             playerTwo = Player("Player Two","O")
         }
+
         currentPlayer = playerOne // top delete 
 
 
@@ -274,17 +246,15 @@ const game = (() => {
 
     const playGame = function(){
         if (document.getElementsByClassName("board_container").length == 0){
+            
             let getNames = document.getElementsByClassName("get_names")[0]
             getNames.classList.toggle('show');
             let resetButton = document.getElementsByClassName("restart")[0]
             resetButton.classList.toggle("show")
 
-        console.log("PG CALLED")
-        displayController.drawBoard()
-        clickToMove()
-    } else { 
-        alert("some error")
-    }
+            displayController.drawBoard()
+            clickToMove()
+        } 
     }
 
     const restartSetUp = function(){
