@@ -71,6 +71,8 @@ const game = (() => {
     let legal = ''
     let full = ''
     let win = false
+    aiMode = false 
+
 
 
     const move = (square) =>{
@@ -231,10 +233,15 @@ const game = (() => {
         } else {
             playerOne = Player("Player One","X")
         }
-        if(p2_name.value != undefined && p2_name.value != ""){
-            playerTwo = Player(p2_name.value,"O") 
+
+        if (aiMode == false ){
+            if(p2_name.value != undefined && p2_name.value != ""){
+                playerTwo = Player(p2_name.value,"O") 
+            } else {
+                playerTwo = Player("Player Two","O")
+            }
         } else {
-            playerTwo = Player("Player Two","O")
+            playerTwo = Player("AI","O")
         }
 
         currentPlayer = playerOne // top delete 
@@ -285,6 +292,7 @@ const game = (() => {
         playerOne = ''
         playerTwo = ''
         currentPlayer = ''
+        aiMode = false 
 
         //Reset board 
 
@@ -332,6 +340,11 @@ const game = (() => {
     const disablePlayerTwo = function(){
         playerTwoNameForm = document.getElementsByClassName("player_two_name_form")[0]
         playerTwoNameForm.classList.toggle("disabled")
+        if (aiMode == false) {
+            aiMode = true 
+        } else {
+            aiMode = false
+        }
     }
 
     const startGame = function(){
