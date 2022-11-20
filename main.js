@@ -254,9 +254,17 @@ const game = (() => {
     const createPlayers = function(){
         p1_name = document.getElementById("p1_name")
         p2_name = document.getElementById("p2_name")
-
+        console.log(p1_name.value)
+        if(p1_name.value != undefined && p1_name.value != ""){
         playerOne = Player(p1_name.value,"X") 
+        } else {
+            playerOne = Player("Player One","X")
+        }
+        if(p2_name.value != undefined && p2_name.value != ""){
         playerTwo = Player(p2_name.value,"O") 
+        } else {
+            playerTwo = Player("Player Two","O")
+        }
         currentPlayer = playerOne // top delete 
 
 
