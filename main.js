@@ -1,6 +1,6 @@
 
 //ai
-
+// underscore private methods
 
 
 
@@ -321,9 +321,23 @@ const game = (() => {
 
     }
 
+    const removePlayerTwo = function(){
+        let aiCheckbox = document.getElementById("ai")
+        aiCheckbox.addEventListener("click", function(){
+            disablePlayerTwo()
+
+        })
+    }
+
+    const disablePlayerTwo = function(){
+        playerTwoNameForm = document.getElementsByClassName("player_two_name_form")[0]
+        playerTwoNameForm.classList.toggle("disabled")
+    }
+
     const startGame = function(){
         restartSetUp()
         getNamesSetup()
+        removePlayerTwo()
     }
 
 
