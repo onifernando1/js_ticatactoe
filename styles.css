@@ -21,7 +21,14 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: background-color .7s ease-out;
+    transition: transform .4s ease-in-out;
 
+}
+
+.individual_square:hover{
+    background-color:rgb(255, 187, 187);
+    transform:scale(110%)
 }
 
 .body_container{
