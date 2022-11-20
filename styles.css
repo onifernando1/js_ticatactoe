@@ -63,8 +63,9 @@ body{
 
 }
 
-.restart:hover{
-    /* background-color: red; //to delete  */
+.restart.show:hover {
+    background-color: black;
+    color:white;
 }
 
 .restart.new{
@@ -104,6 +105,8 @@ input[type="submit"]:hover {
 .win_message{
     color:white;
     /* margin-top:-900px; */
+    font-size:2rem;
+    font-weight:700;
 }
 
 .names_form{
