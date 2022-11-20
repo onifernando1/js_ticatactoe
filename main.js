@@ -55,10 +55,31 @@ const displayController = (() => {
 
 const Player = (name, symbol) => {
 
+    let legalMoves = []
+    let randomMove = ""       
+
+    //AI functions 
+
+    const findLegalMoves = function(){
+        
+        for(let i = 0; i < gameBoard.board.length; i++){
+            if (gameBoard.board[i] == " "){
+                legalMoves.push(i)
+            }
+        }
+    }
+
+    const selectRandomLegalMove = function(){
+        let length = legalMoves.length
+        min = Math.ceil(0);
+        max = Math.floor(length)
+        randomMove = Math.floor(Math.random() * (max - min + 1)) + min;
+        console.log(randomMove)
+    }
 
 
     return {
-        name, symbol
+        name, symbol, findLegalMoves, selectRandomLegalMove
     }
 }
 
