@@ -64,7 +64,7 @@ body{
 }
 
 .restart:hover{
-    background-color: red; //to delete 
+    /* background-color: red; //to delete  */
 }
 
 .restart.new{
@@ -78,7 +78,9 @@ input[type="submit"] {
     color:white;
     border:none;
     margin-top:20px;
-    font-size:1.5rem;
+    font-size:2rem;
+    height:50px;
+    width:150px;
 }
 
 input[type="submit"]:hover {
@@ -93,6 +95,8 @@ input[type="submit"]:hover {
     /* width:1rem;
     height:1rem;
     padding:20px; */
+    height:50px;
+    width:200px;
     
 }
 
@@ -100,6 +104,13 @@ input[type="submit"]:hover {
 .win_message{
     color:white;
     /* margin-top:-900px; */
+}
+
+.names_form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .names_form > div{
@@ -114,8 +125,13 @@ input[type="submit"]:hover {
     font-size:2rem;
 }
 
-.names_form > div > input{
-    height:25px;
+.names_form > div > label:hover{
+    color: hsl(0,0%,100%);
+    text-shadow:0 0 10px white; 
+}
+
+.names_form > div > input[type="text"]{
+      height:25px;
     width:200px;
 }
 
