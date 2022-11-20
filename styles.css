@@ -90,6 +90,9 @@ input[type="submit"]:hover {
     display:flex;
     justify-content: center;
     align-items: center;
+    /* width:1rem;
+    height:1rem;
+    padding:20px; */
     
 }
 
@@ -98,3 +101,21 @@ input[type="submit"]:hover {
     color:white;
     /* margin-top:-900px; */
 }
+
+.names_form > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:10px;
+    margin-bottom:20px;
+}
+
+.names_form > div > label{
+    font-size:2rem;
+}
+
+.names_form > div > input{
+    height:25px;
+    width:200px;
+}
+
