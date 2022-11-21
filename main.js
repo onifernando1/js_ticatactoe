@@ -421,15 +421,15 @@ const game = (() => {
         const aiMove = function(){
             currentPlayer = playerTwo //
             //
-            playerTwo.findLegalMoves()
+            // playerTwo.findLegalMoves()
 
             /// replace everything below this with minimax
-            let i = playerTwo.selectRandomLegalMove()
+            // let i = playerTwo.selectRandomLegalMove()
+            let i = findBestMove()
             gameBoard.board[i] = currentPlayer.symbol
             setTimeout(function(){move(squares[i])}, 300)
             ////
 
-            // for (let i = 0; i < playerTwo.legalMoves; i++){}
 
         }
 
@@ -437,21 +437,24 @@ const game = (() => {
 
             let bestScore = -Infinity //ai wants max score
             let bestMove = ""
-
-            for(let i =0;i<gameBoard.length;i++){      // check empty spots
-                if (gameBoard.board(i)== " "){         //check empty spots
-                    let score = minimax(gameBoard.board) // implement minimax recursive algo 
+            for (let i = 0; i < gameBoard.board.length; i++){      // check empty spots
+                console.log(i)
+                if (gameBoard.board[i] == " "){         //check empty spots
+                    let score = miniMax(gameBoard.board) // implement minimax recursive algo 
+                    console.log(`score: ${score} //`)
+                    gameBoard.board[i] = " "            // reset board
                     if (score > bestScore) {             // if score is better than the previous score 
                         bestScore = score                // make that score the new best Score
                         bestMove = i                     //return move that will get the best score   
                     }
                 }
             }
+            return bestMove
 
         }
 
-        const miniMax = function(){
-            
+        const miniMax = function(board){
+            return 1 
         }
 
     const startGame = function(){
