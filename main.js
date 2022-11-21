@@ -1,4 +1,4 @@
-
+let moveNumber = 0
 //ai
 // underscore private methods
 
@@ -56,7 +56,7 @@ const displayController = (() => {
 const Player = (name, symbol) => {
 
     let legalMoves = []
-    let randomMove = ""       
+    // let randomMove = ""       
 
     //AI functions 
 
@@ -65,6 +65,7 @@ const Player = (name, symbol) => {
         for(let i = 0; i < gameBoard.board.length; i++){
             if (gameBoard.board[i] == " "){
                 legalMoves.push(i)
+                console.log(`legal move found ${i}`)
             }
         }
     }
@@ -72,9 +73,13 @@ const Player = (name, symbol) => {
     const selectRandomLegalMove = function(){
         let length = legalMoves.length
         min = Math.ceil(0);
-        max = Math.floor(length)
-        randomMove = Math.floor(Math.random() * (max - min + 1)) + min;
+        max = Math.floor(length - 1)
+        let randomIndex = Math.floor(Math.random() * (max - min + 1)) + min;
+        let randomMove = legalMoves[randomIndex]
+        console.log(`legal moves: ${legalMoves}`)
         console.log(randomMove)
+        legalMoves = []
+        return randomMove
     }
 
 
@@ -92,13 +97,20 @@ const game = (() => {
     let legal = ''
     let full = ''
     let win = false
-    aiMode = false 
+    let aiMode = false 
 
 
 
     const move = (square) =>{
 
+
+            console.log("move called")
+            console.log(square)
             square.innerHTML = currentPlayer.symbol
+            console.log("MOVE DRAWN")
+            console.log(`MOVE DRAWN BY ${currentPlayer.name}`)
+            console.log(`MOVE NUMBER ${moveNumber}`)
+            moveNumber = moveNumber + 1 
             checkWin()
             if (win == false ){
                 checkFull()
@@ -124,12 +136,39 @@ const game = (() => {
     }
 
     const swapPlayer = function(){
+        
+        console.log(`PLAYER JUST SWAPPED`)
 
-        if (currentPlayer.symbol == playerOne.symbol){
+       
+        console.log(``) 
+        console.log(``)
+        console.log(``)
+        console.log(``)
+
+
+        if (aiMode == true && currentPlayer == playerOne){
             currentPlayer = playerTwo
-        } else {
-            currentPlayer = playerOne
+            console.log(`current player = ${currentPlayer.name}`)
+            console.log(`aiMode: ${aiMode}`)
+            playerTwo.findLegalMoves()
+            let i = playerTwo.selectRandomLegalMove()
+            gameBoard.board[i] = currentPlayer.symbol
+            move(squares[i])
+            //marker
 
+
+        } else {
+
+            if (currentPlayer.symbol == playerOne.symbol){
+                currentPlayer = playerTwo
+                console.log(`current player = ${currentPlayer.name}`)
+                console.log(`aiMode: ${aiMode}`)
+            } else {
+                currentPlayer = playerOne
+                console.log(`current player = ${currentPlayer.name}`)
+                console.log(`aiMode: ${aiMode}`)
+
+            }
         }
     }
 
@@ -217,12 +256,14 @@ const game = (() => {
         if (legal == true){
             gameBoard.board[i] = currentPlayer.symbol
             move(squares[i])
-            
 
-    } 
-        else if (legal == false) {
-            alert("Invalid move")
+        } else if (legal == false) {
+                alert("Invalid move")
         }
+
+
+           
+
     }
 
     const getNamesSetup = function(){
@@ -368,6 +409,14 @@ const game = (() => {
         }
     }
 
+    //Ai moves
+
+        const aiMove = function(){
+            
+        }
+
+
+
     const startGame = function(){
         restartSetUp()
         getNamesSetup()
@@ -386,3 +435,5 @@ const game = (() => {
 
 
 game.startGame()
+
+
