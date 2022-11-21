@@ -153,7 +153,7 @@ const game = (() => {
             playerTwo.findLegalMoves()
             let i = playerTwo.selectRandomLegalMove()
             gameBoard.board[i] = currentPlayer.symbol
-            move(squares[i])
+            setTimeout(function(){move(squares[i])}, 300)
             //marker
 
 
