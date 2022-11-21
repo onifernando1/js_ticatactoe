@@ -387,6 +387,14 @@ const game = (() => {
         let getNames = document.getElementsByClassName("get_names")[0]
         getNames.classList.toggle('show');
 
+        // reset ai section
+        let aiForm = document.getElementById("ai")
+        aiForm.checked = false 
+        
+        let p2NameForm = document.getElementsByClassName("disabled")[0]
+        p2NameForm.classList.remove("disabled")
+        
+
         
 
     }
