@@ -147,14 +147,13 @@ const game = (() => {
 
 
         if (aiMode == true && currentPlayer == playerOne){
-            currentPlayer = playerTwo
-            console.log(`current player = ${currentPlayer.name}`)
-            console.log(`aiMode: ${aiMode}`)
-            playerTwo.findLegalMoves()
-            let i = playerTwo.selectRandomLegalMove()
-            gameBoard.board[i] = currentPlayer.symbol
-            setTimeout(function(){move(squares[i])}, 300)
+            // currentPlayer = playerTwo
+            // playerTwo.findLegalMoves()
+            // let i = playerTwo.selectRandomLegalMove()
+            // gameBoard.board[i] = currentPlayer.symbol
+            // setTimeout(function(){move(squares[i])}, 300)
             //marker
+            aiMove()
 
 
         } else {
@@ -420,7 +419,11 @@ const game = (() => {
     //Ai moves
 
         const aiMove = function(){
-            
+            currentPlayer = playerTwo
+            playerTwo.findLegalMoves()
+            let i = playerTwo.selectRandomLegalMove()
+            gameBoard.board[i] = currentPlayer.symbol
+            setTimeout(function(){move(squares[i])}, 300)
         }
 
 
